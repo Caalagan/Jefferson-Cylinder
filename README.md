@@ -66,6 +66,15 @@ Fonctionnalitées a implémenter (Version graphique): (CF images du cours)
 
 
 
+Prendre en compte les accents
+
+
+
+
+
+
+
+
 Bonus :
 
 Construire physiquement, c'est-à-dire avec des disques et un axe, un cylindre de Jefferson.
