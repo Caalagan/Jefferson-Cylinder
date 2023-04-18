@@ -85,6 +85,7 @@ def dechiffrement_phrase(phrase):
 
 #demander à l'utilisateur de rentrer une phrase et la met en majuscule
 phrase = input("Entrez votre phrase : ")
+phrase = phrase.replace(" ", "")
 phrase = phrase.upper()
 print("phrase : ", phrase)
 crypté = chiffrement_phrase(phrase)
