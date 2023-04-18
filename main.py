@@ -17,7 +17,7 @@ def tirage():
 
 
 #Demande à l'utilisateur de rentrer le nombre de ligne qu'il veut dans son fichier
-n = int(input("Combien de ligne voulez vous dans votre fichier ?"))
+n = int(input("Entrez le nombre de ligne voulez vous dans votre fichier : "))
 #ajouter la valeure absolue + prendre en compte les erreur de type lettre au lieu de chiffre
 
 #Ecriture dans un fichier txt de n ligne (pas besoin de clear ça le fait tout seul)
@@ -51,14 +51,12 @@ def chiffrement(lettre, cle):
         position -= 26
     return cylindre[position]
 
-#test de la fonction chiffrement
-print(chiffrement("A",cle[0]))
 
 #chiffrement d'une phrase
 def chiffrement_phrase(phrase):
+    chiffré = ""
     for i in range(len(phrase)):
-        phrase[i] = chiffrement(phrase[i], cle[i-1])
-        print(phrase)
-    return phrase
+        chiffré += chiffrement(phrase[i], cle[i])
+    return chiffré
 
-chiffrement_phrase("BONJOUR")
+print(chiffrement_phrase("BONJOUR"))
