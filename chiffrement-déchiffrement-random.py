@@ -21,12 +21,12 @@ n = int(input("Entrez le nombre de ligne voulez vous dans votre fichier : "))
 #ajouter la valeure absolue + prendre en compte les erreur de type lettre au lieu de chiffre
 
 #Ecriture dans un fichier txt de n ligne (pas besoin de clear ça le fait tout seul)
-with open ("test.txt", "w+") as fichier:
+with open ("cylindre.txt", "w+") as fichier:
     for i in range (n):
         fichier.write(tirage())
 
 #Lecture du fichier : création d'un dictionnaire avec en clé le numéro de la ligne et en valeur la chaine de caractère
-with open ("test.txt", "r") as fichier:
+with open ("cylindre.txt", "r") as fichier:
     dico = {}
     for i, ligne in enumerate(fichier):
         dico[i+1] = ligne
