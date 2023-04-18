@@ -1,0 +1,7 @@
+Ceci est juste un reminder de la clé de test. Il ne faut pas que la clé soit dans un fichier
+
+[7,9,5,10,1,6,3,8,2,4]
+
+! Avec le fichier cylinderWiki.txt :
+
+Le chiffrement de la phrase 'Retreat Now' devra donner 'OMKEGWPDFN'.
