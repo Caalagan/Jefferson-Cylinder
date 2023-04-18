@@ -34,12 +34,24 @@ with open ("test.txt", "r") as fichier:
 #Affichage du dictionnaire
 print(dico)
 
-#Génération d'un d'une clé : permutation des entier entre 1 et n 
-for i in range (n):
-    cle = random.sample(range(1, n+1), n)
 
-#affichage clé
-print(cle)
+
+
+
+
+
+
+#Demande de clé :
+cle = ""
+
+
+
+
+
+
+
+
+
 
 #chiffrement d'une lettre (lettre située à la position +6 de la chaine de caractère)
 #cle = dico[l] l en fonction de la place de la lettre dans la phrase
@@ -52,6 +64,23 @@ def chiffrement(lettre, cle):
     return cylindre[position]
 
 
+#fonction déchiffrement
+def dechiffrement(lettre, cle):
+    cylindre = dico[cle]
+    position = cylindre.find(lettre)
+    position -= 6
+    if position < 0:
+        position += 26
+    return cylindre[position]
+
+test = "B"
+print(test)
+test = chiffrement(test, cle[0])
+print(test)
+test = dechiffrement(test, cle[0])
+print(test)
+
+
 #chiffrement d'une phrase
 def chiffrement_phrase(phrase):
     chiffré = ""
@@ -59,6 +88,18 @@ def chiffrement_phrase(phrase):
         chiffré += chiffrement(phrase[i], cle[i])
     return chiffré
 
-crypté = chiffrement_phrase("BONJOUR")
+#déchiffrement d'une phrase
+def dechiffrement_phrase(phrase):
+    dechiffré = ""
+    for i in range(len(phrase)):
+        dechiffré += dechiffrement(phrase[i], cle[i])
+    return dechiffré
 
-#fonction déchiffrement
+#demander à l'utilisateur de rentrer une phrase et la met en majuscule
+phrase = input("Entrez votre phrase : ")
+phrase = phrase.upper()
+print("phrase : ", phrase)
+crypté = chiffrement_phrase(phrase)
+print("crypté : ", crypté)
+décrypté = dechiffrement_phrase(crypté)
+print("décrypté : ", décrypté)
