@@ -5,6 +5,7 @@ class chiffrement:
     def __init__(self, nombre_de_cylindre, phrase):
         self.n = nombre_de_cylindre
         self.phrase = phrase
+        self.phrase_chiffré = ""
 
 
     def tirage(self):
@@ -24,7 +25,7 @@ class chiffrement:
         #Ecriture dans un fichier txt de n ligne (pas besoin de clear ça le fait tout seul)
         with open ("cylindre.txt", "w+") as fichier:
             for i in range (n):
-                fichier.write(tirage())
+                fichier.write(self.tirage())
 
         #Lecture du fichier : création d'un dictionnaire avec en clé le numéro de la ligne et en valeur la chaine de caractère
         with open ("cylindre.txt", "r") as fichier:
@@ -45,7 +46,7 @@ class chiffrement:
 
 
     #chiffrement d'une lettre (lettre située à la position +6 de la chaine de caractère)
-    def chiffrement(self, lettre, cle):
+    def chiffrement_lettre(self, lettre, cle):
         cylindre = self.dico[cle]
         position = cylindre.find(lettre)
         position += 6
@@ -55,40 +56,24 @@ class chiffrement:
 
     #chiffrement d'une phrase
     def chiffrement_phrase(self):
-        chiffré = ""
         for i in range(len(self.phrase)):
-            chiffré += chiffrement(self.phrase[i], self.cle[i])
-        return chiffré
+            self.phrase_chiffré += self.chiffrement_lettre(self.phrase[i], self.cle[i])
+
+    def afficher_chiffrement(self):
+        print(self.phrase_chiffré)
+
+    def return_chiffrement(self):
+        return self.phrase_chiffré
 
 phrase = input("Votre phrase : ")
-chiffrage = chiffrement(n, phrase)
-
-
-class dechiffrement():
-    #fonction déchiffrement
-    def dechiffrement(lettre, cle):
-        cylindre = dico[cle]
-        position = cylindre.find(lettre)
-        position -= 6
-        if position < 0:
-            position += 26
-        return cylindre[position]
-
-    #déchiffrement d'une phrase
-    def dechiffrement_phrase(phrase):
-        dechiffré = ""
-        for i in range(len(phrase)):
-            dechiffré += dechiffrement(phrase[i], cle[i])
-        return dechiffré
-    
-phrase = input("Entrez votre phrase : ")
 phrase = phrase.replace(" ", "")
 phrase = phrase.upper()
-n = phrase.count()
+n = len(phrase)
+chiffrage = chiffrement(n, phrase)
+chiffrage._get_dico_()
+chiffrage._get_cle_()
+chiffrage.chiffrement_phrase()
+chiffrage.afficher_chiffrement()
+test = chiffrage.return_chiffrement()
+print(test)
 
-
-print("phrase : ", phrase)
-ma_phrase = DicoCle(n)
-print("crypté : ", crypté)
-décrypté = dechiffrement_phrase(crypté)
-print("décrypté : ", décrypté)
