@@ -68,6 +68,7 @@ Fonctionnalitées a implémenter (Version graphique): (CF images du cours)
 
 Prendre en compte les accents
 
+Ajouter des commentaires à chaque fonction pour les expliquer
 
 
 
