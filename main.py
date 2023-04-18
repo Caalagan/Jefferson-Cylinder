@@ -59,4 +59,6 @@ def chiffrement_phrase(phrase):
         chiffré += chiffrement(phrase[i], cle[i])
     return chiffré
 
-print(chiffrement_phrase("BONJOUR"))
+crypté = chiffrement_phrase("BONJOUR")
+
+#fonction déchiffrement
