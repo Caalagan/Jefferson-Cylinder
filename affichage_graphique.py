@@ -1,4 +1,5 @@
 import random
+from tkinter import *
 
 class chiffrement:
 
@@ -6,7 +7,7 @@ class chiffrement:
         self.n = nombre_de_cylindre
         self.phrase = phrase
         self.phrase_chiffré = ""
-
+        self.cle = []
         #Génération des cylindres
         #Ecriture dans un fichier txt de n ligne (pas besoin de clear ça le fait tout seul)
         with open ("cylindre.txt", "w+") as fichier:
@@ -19,10 +20,32 @@ class chiffrement:
             for i, ligne in enumerate(fichier):
                 self.dico[i+1] = ligne
 
-        #Génération d'un d'une clé : permutation des entier entre 1 et n 
-        for i in range (n):
-            self.cle = random.sample(range(1, n+1), n)
+        #Suppression de la génération de clé
 
+        self.root = Tk()
+        self.root.title("Jefferson's Cylinder")
+        self.root.geometry("500x700")
+        #Creation d`un label a chaque colonne et d`un bouton pour chaque cylindre
+        for i in range (n):
+            ligne=""
+            VarCylindre = "label"+str(i)
+            VarBoutton = "boutton"+str(i)
+            VarTexte = self.dico[i+1]
+            for caractere in VarTexte:
+                ligne += (caractere + "   \n")
+            VarCylindre = Label(self.root, text=ligne)
+            VarCylindre.grid(row=0, column=i, sticky="w")
+
+            VarBoutton = Button(self.root, text=i+1, relief = FLAT, command=lambda i=i: self.boutton(i))
+            VarBoutton.grid(row=1, column=i, sticky="w")
+
+
+        self.AffichageCle = Label(self.root, text=self.cle)
+        self.AffichageCle.grid(row=2, column=0, sticky="nsew")
+    def boutton(self, num):
+        self.cle.append(num+1)
+        self.AffichageCle.config(text=self.cle)
+    #Génération d'un tirage aléatoire de 26 lettres
     def tirage(self):
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         tirage = ""
@@ -55,16 +78,7 @@ class chiffrement:
     def return_chiffrement(self):
         return self.phrase_chiffré
 
-phrase = input("Votre phrase : ")
-phrase = phrase.replace(" ", "")
-phrase = phrase.upper()
-n = len(phrase)
-chiffrage = chiffrement(n, phrase)
-print(chiffrage.dico)
-print(chiffrage.cle)
-chiffrage.chiffrement_phrase()
-chiffrage.afficher_chiffrement()
-phrase_chiffree = chiffrage.return_chiffrement()
+
 
 #Déchiffrement
 class dechiffrement:
@@ -98,10 +112,23 @@ class dechiffrement:
 
     def return_dechiffrement(self):
         return self.phrase_dechiffree
-    
+
+phrase = input("Votre phrase : ")
+phrase = phrase.replace(" ", "")
+phrase = phrase.upper()
+n = len(phrase)
+chiffrage = chiffrement(n, phrase)
+print(chiffrage.dico)
+print(chiffrage.cle)
+chiffrage.root.mainloop()
+chiffrage.chiffrement_phrase()
+chiffrage.afficher_chiffrement()
+phrase_chiffree = chiffrage.return_chiffrement()
+
 
 dechiffrage = dechiffrement(phrase_chiffree, chiffrage.cle)
 dechiffrage._get_dico_()
 dechiffrage.dechiffrement_phrase()
+
 dechiffrage.afficher_dechiffrement()
 phrase_dechiffree = dechiffrage.return_dechiffrement()
