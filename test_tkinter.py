@@ -8,6 +8,8 @@ def bouton():
     liste.append(label5.cget("text"))
     suite.config(text=liste)
 
+#Creation d`un label a chaque colonne et d`un bouton pour chaque cylindrekkwsdfghbabygirljjjjjjjjjjjj
+
 
 label = Label(root, text="   1\n   2\n   3\n   4\n   5\n   6")
 label.grid(row=0, column=0, sticky="w")
