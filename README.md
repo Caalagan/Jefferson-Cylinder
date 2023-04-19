@@ -1,4 +1,30 @@
 # Jefferson-Cylinder
+
+A faire du plus au moins urgent :
+
+Finir l'affichage graphique -> test de tkinter dans test_tkinter.py
+
+
+
+Voies d'améliorations :
+
+Pour l'affichage graphique on peut :
+
+    Faire deux fichier : un pour chiffrement et un pour déchiffrement
+
+    Pour le chiffrement on fait comme dans la consigne et on peut même rajouter un fichier pour enregistrer la clé si on veut la partager pour le déchiffrement.
+
+    Pour le déchiffrement on demande a l'utilisateur si le cylindre.txt contient bien le bon cylindre sinon le lui demande de le changer pui on le demande si c'est bien la clé qu'il veut.
+
+
+
+Ajouter des commentaires à chaque fonction pour les expliquer
+
+Prendre en compte les accents
+
+
+
+
 Comment ça marche :
 
 Cet appareil est constitué d’un certain nombre de disques, 36 pour l’original, pivotants autour d’un axe et sur lesquels sont inscrits des alphabets désordonnés. Les deux correspondants disposent des mêmes disques.
@@ -62,13 +88,6 @@ Fonctionnalitées a implémenter (Version graphique): (CF images du cours)
 3. On réordonne alors les cylindres selon la clé 
 
 4. Grâce aux flèches (flèches cliquable avec la souris) on peut alors faire pivoter les cylindres et ainsi choisir le texte à chiffrer puis récupérer le texte une fois chiffré
-
-
-
-
-Prendre en compte les accents
-
-Ajouter des commentaires à chaque fonction pour les expliquer
 
 
 
