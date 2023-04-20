@@ -14,17 +14,17 @@ class chiffrement:
             for i in range (n):
                 fichier.write(self.tirage())
 
-        #Lecture du fichier : création d'un dictionnaire avec en clé le numéro de la ligne et en valeur la chaine de caractère
-        with open ("cylindre.txt", "r") as fichier:
-            self.dico = {}
-            for i, ligne in enumerate(fichier):
-                self.dico[i+1] = ligne
+        self._get_dico_()
 
         #Suppression de la génération de clé
 
         self.root = Tk()
         self.root.title("Jefferson's Cylinder")
         self.root.geometry("500x700")
+        self.affichage_cylindre()
+        self.creer_boutton_cle()
+        
+    def affichage_cylindre(self):
         #Creation d`un label a chaque colonne et d`un bouton pour chaque cylindre
         for i in range (n):
             ligne=""
@@ -32,19 +32,62 @@ class chiffrement:
             VarBoutton = "boutton"+str(i)
             VarTexte = self.dico[i+1]
             for caractere in VarTexte:
-                ligne += (caractere + "   \n")
+                ligne += ("    " + caractere + "\n")
             VarCylindre = Label(self.root, text=ligne)
             VarCylindre.grid(row=0, column=i, sticky="w")
-
+    
+    #ajouter un boutton pour chaque cylindre
+    def creer_boutton_cle(self):
+        for i in range (n):
             VarBoutton = Button(self.root, text=i+1, relief = FLAT, command=lambda i=i: self.boutton(i))
             VarBoutton.grid(row=1, column=i, sticky="w")
-
-
-        self.AffichageCle = Label(self.root, text=self.cle)
-        self.AffichageCle.grid(row=2, column=0, sticky="nsew")
+            self.AffichageCle = Label(self.root, text=self.cle)
+            self.AffichageCle.grid(row=2, column=0, sticky="nsew")
+        
+    #Fonction pour ajouter ou supprimer un numéro de cylindre de la clé
     def boutton(self, num):
-        self.cle.append(num+1)
+        PeutAjouter = True
+        for i in range(len(self.cle)):
+            if self.cle[i] == num+1:
+                self.cle.pop(i)
+                PeutAjouter = False
+                break
+        if PeutAjouter == True:
+            self.cle.append(num+1)
         self.AffichageCle.config(text=self.cle)
+        
+        #Si la clé est complète on reload l'affichage et on ajoute le boutton pour chiffrer la phrase ou non
+        if len(self.cle) == n:
+            self.reload_affichage()
+
+
+
+    def reload_affichage(self):
+        #Surpression des bouttons et des anciens cylindres
+        for elements in self.root.winfo_children():
+            elements.destroy()
+        #Affichage des cylindres dans l'ordre de la cle
+        self.modification_cylindre()
+        self.affichage_cylindre()
+    
+    def modification_cylindre(self):
+        #on modifie le fichier cylindre.txt pour qu'il corresponde à la clé
+        with open ("cylindre.txt", "w+") as fichier:
+            for i in range (n):
+                fichier.write(self.dico[self.cle[i]])
+        #recupération du nouveau dico
+        self._get_dico_()
+
+    def _get_dico_(self):
+        #Lecture du fichier : création d'un dictionnaire avec en clé le numéro de la ligne et en valeur la chaine de caractère
+        with open ("cylindre.txt", "r") as fichier:
+            self.dico = {}
+            for i, ligne in enumerate(fichier):
+                self.dico[i+1] = ligne
+
+
+
+
     #Génération d'un tirage aléatoire de 26 lettres
     def tirage(self):
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -118,17 +161,17 @@ phrase = phrase.replace(" ", "")
 phrase = phrase.upper()
 n = len(phrase)
 chiffrage = chiffrement(n, phrase)
-print(chiffrage.dico)
-print(chiffrage.cle)
+#print(chiffrage.dico)
+#print(chiffrage.cle)
 chiffrage.root.mainloop()
-chiffrage.chiffrement_phrase()
-chiffrage.afficher_chiffrement()
-phrase_chiffree = chiffrage.return_chiffrement()
+#chiffrage.chiffrement_phrase()
+#chiffrage.afficher_chiffrement()
+#phrase_chiffree = chiffrage.return_chiffrement()
 
 
-dechiffrage = dechiffrement(phrase_chiffree, chiffrage.cle)
-dechiffrage._get_dico_()
-dechiffrage.dechiffrement_phrase()
+#dechiffrage = dechiffrement(phrase_chiffree, chiffrage.cle)
+#dechiffrage._get_dico_()
+#dechiffrage.dechiffrement_phrase()
 
-dechiffrage.afficher_dechiffrement()
-phrase_dechiffree = dechiffrage.return_dechiffrement()
+#dechiffrage.afficher_dechiffrement()
+#phrase_dechiffree = dechiffrage.return_dechiffrement()
