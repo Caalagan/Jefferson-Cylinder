@@ -45,10 +45,10 @@ suite.grid(row=2, column=0, sticky="nsew")
 
 root.mainloop()
 
-
+#Demande de continuer ou pas
 Demande = Label(self.root, text="Voulez vous chiffrer la phrase (oui/non) : ")
-            Demande.grid(row=3, column=0, sticky="nsew")
-            BouttonOui = Button(self.root, text="Oui", relief = FLAT, command=lambda: self.chiffrement_phrase())
-            BouttonOui.grid(row=4, column=0, sticky="nsew")
-            BouttonNon = Button(self.root, text="Non", relief = FLAT, command=lambda: self.root.destroy())
-            BouttonNon.grid(row=4, column=1, sticky="nsew")
+Demande.grid(row=3, column=0, sticky="nsew")
+BouttonOui = Button(self.root, text="Oui", relief = FLAT, command=lambda: self.chiffrement_phrase())
+BouttonOui.grid(row=4, column=0, sticky="nsew")
+BouttonNon = Button(self.root, text="Non", relief = FLAT, command=lambda: self.root.destroy())
+BouttonNon.grid(row=4, column=1, sticky="nsew")
