@@ -4,7 +4,13 @@ A faire du plus au moins urgent :
 
 Finir l'affichage graphique -> test de tkinter dans test_tkinter.py
 
+    ETAPES :
 
+    -> ligne 59 : ajouter le bouton pour faire le chiffrement ou non : si oui alors on fait le chiffrement et on affiche le résultat sinon on réaffiche les boutons pour changer la clé
+
+    -> Ajouter les boutons pour rotate  le cylindre si le bouton chiffrement est activé
+
+    -> faire la fonction de rotate de cylindre
 
 Voies d'améliorations :
 
@@ -16,6 +22,9 @@ Pour l'affichage graphique on peut :
 
     Pour le déchiffrement on demande a l'utilisateur si le cylindre.txt contient bien le bon cylindre sinon le lui demande de le changer pui on le demande si c'est bien la clé qu'il veut.
 
+    OU
+
+    Faire un seul fichier avec un menu au début qui propose chiffrement/déchiffrement
 
 
 Ajouter des commentaires à chaque fonction pour les expliquer
