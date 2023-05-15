@@ -10,7 +10,11 @@ Finir l'affichage graphique -> test de tkinter dans test_tkinter.py
 
     -> Ajouter les boutons pour rotate  le cylindre si le bouton chiffrement est activé
 
-    -> faire la fonction de rotate de cylindre
+    -> faire la fonction de rotate de cylindre (decaler les lettres de 1)
+
+    -> Menu pour chiffrer / déchiffrer avant tout l'affichage (donc peut etre nouvelle fenetre)
+
+
 
 Voies d'améliorations :
 
