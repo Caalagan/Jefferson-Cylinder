@@ -32,7 +32,7 @@ class chiffrement:
             VarBoutton = "boutton"+str(i)
             VarTexte = self.dico[i+1]
             for caractere in VarTexte:
-                ligne += ("    " + caractere + "\n")
+                ligne += ("" + caractere + "\n")
             VarCylindre = Label(self.root, text=ligne)
             VarCylindre.grid(row=0, column=i, sticky="w")
     
@@ -42,7 +42,7 @@ class chiffrement:
             VarBoutton = Button(self.root, text=i+1, relief = FLAT, command=lambda i=i: self.boutton(i))
             VarBoutton.grid(row=1, column=i, sticky="w")
             self.AffichageCle = Label(self.root, text=self.cle)
-            self.AffichageCle.grid(row=2, column=0, sticky="nsew")
+            self.AffichageCle.grid(row=2, column=0,columnspan=0 sticky="nsew")
         
     #Fonction pour ajouter ou supprimer un numéro de cylindre de la clé
     def boutton(self, num):
