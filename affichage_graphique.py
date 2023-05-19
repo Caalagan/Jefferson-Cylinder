@@ -53,26 +53,29 @@ class chiffrement:
             VarFlecheBas = Button(self.root, text="|\nv", relief = FLAT, command=lambda i=i: self.fleche_bas(i))
             VarFlecheBas.grid(row=2, column=i, sticky="w")
 
-    #Fonction pour rotate le cylindre
+    #Fonction pour rotate le cylindre vers le haut
     def fleche_haut(self, num):
-        #fonction de rotaaate
-        print("En cours")
+
         temp=self.dico[num+1]
-        
         lettre=""
         for i in range (25):
             lettre+=temp[i+1]
         lettre+=temp[0]
+        lettre+="\n"
         self.dico[num+1]=lettre
-        print(self.dico[num+1])
+        self.reload_affichage()
         self.creer_fleches()
     
+    #Fonction pour rotate le cylindre vers le bas
     def fleche_bas(self, num):
-        #fonction de rotaaate
-        print("En cours")
-        print(self.dico[num+1])
-        
-        self.affichage_cylindre()
+
+        temp=self.dico[num+1]
+        lettre=temp[25]
+        for i in range (25):
+            lettre+=temp[i]
+        lettre+="\n"
+        self.dico[num+1]=lettre
+        self.reload_affichage()
         self.creer_fleches()
 
 
@@ -90,7 +93,6 @@ class chiffrement:
         
         #Si la clé est complète on reload l'affichage et on ajoute les fleches
         if len(self.cle) == n:
-            
             self.reload_affichage()
             self.creer_fleches()
 
