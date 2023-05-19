@@ -25,11 +25,10 @@ class chiffrement:
         self.creer_boutton_cle()
         
     def affichage_cylindre(self):
-        #Creation d`un label a chaque colonne et d`un bouton pour chaque cylindre
+        #Creation d`un label a chaque colonne
         for i in range (n):
             ligne=""
             VarCylindre = "label"+str(i)
-            VarBoutton = "boutton"+str(i)
             VarTexte = self.dico[i+1]
             for caractere in VarTexte:
                 ligne += ("   " + caractere + "\n")
@@ -43,7 +42,29 @@ class chiffrement:
             VarBoutton.grid(row=1, column=i, sticky="w")
             self.AffichageCle = Label(self.root, text=self.cle)
             self.AffichageCle.grid(row=2, column=0, columnspan=100)
+    
+    #ajouter deux fleches pour chaque cylindre 
+    def creer_fleches(self):
+        for i in range (n):
+            VarFlecheHaut = Button(self.root, text="^\n|", relief = FLAT, command=lambda i=i: self.fleche_haut(i))
+            VarFlecheHaut.grid(row=1, column=i, sticky="w")
         
+        for i in range (n):
+            VarFlecheBas = Button(self.root, text="|\nv", relief = FLAT, command=lambda i=i: self.fleche_bas(i))
+            VarFlecheBas.grid(row=2, column=i, sticky="w")
+
+    #Fonction pour rotate le cylindre
+    def fleche_haut(self, num):
+        #fonction de rotaaate
+        print("En cours")
+        self.reload_affichage()
+    
+    def fleche_bas(self, num):
+        #fonction de rotaaate
+        print("En cours")
+        self.reload_affichage()
+
+
     #Fonction pour ajouter ou supprimer un numéro de cylindre de la clé
     def boutton(self, num):
         PeutAjouter = True
@@ -56,9 +77,10 @@ class chiffrement:
             self.cle.append(num+1)
         self.AffichageCle.config(text=self.cle)
         
-        #Si la clé est complète on reload l'affichage et on ajoute le boutton pour chiffrer la phrase ou non
+        #Si la clé est complète on reload l'affichage et on ajoute les fleches
         if len(self.cle) == n:
             self.reload_affichage()
+            self.creer_fleches()
 
 
 

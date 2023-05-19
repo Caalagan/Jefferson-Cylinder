@@ -6,8 +6,6 @@ Finir l'affichage graphique -> test de tkinter dans test_tkinter.py
 
     ETAPES :
 
-    -> ligne 59 : ajouter le bouton pour faire le chiffrement ou non : si oui alors on fait le chiffrement et on affiche le résultat sinon on réaffiche les boutons pour changer la clé
-
     -> Ajouter les boutons pour rotate  le cylindre si le bouton chiffrement est activé
 
     -> faire la fonction de rotate de cylindre (decaler les lettres de 1)
@@ -30,6 +28,7 @@ Pour l'affichage graphique on peut :
 
     Faire un seul fichier avec un menu au début qui propose chiffrement/déchiffrement
 
+    Ajouter un bouton pour faire le chiffrement ou non : si oui alors on continue et affiche les fleches sinon on réaffiche les boutons pour changer la clé
 
 Ajouter des commentaires à chaque fonction pour les expliquer
 
