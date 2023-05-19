@@ -1,5 +1,11 @@
 # Jefferson-Cylinder
 
+prob :
+affichage avec toujours le premier ... WTf ?
+Ca change pas le fichier cylindre.txt ...
+
+
+
 A faire du plus au moins urgent :
 
 Finir l'affichage graphique -> test de tkinter dans test_tkinter.py

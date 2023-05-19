@@ -8,7 +8,7 @@ class chiffrement:
         self.phrase = phrase
         self.phrase_chiffré = ""
         self.cle = []
-        #Génération des cylindres
+        
         #Ecriture dans un fichier txt de n ligne (pas besoin de clear ça le fait tout seul)
         with open ("cylindre.txt", "w+") as fichier:
             for i in range (n):
@@ -16,8 +16,8 @@ class chiffrement:
 
         self._get_dico_()
 
-        #Suppression de la génération de clé
 
+        #Création de la fenetre
         self.root = Tk()
         self.root.title("Jefferson's Cylinder")
         self.root.geometry("500x700")
@@ -57,12 +57,23 @@ class chiffrement:
     def fleche_haut(self, num):
         #fonction de rotaaate
         print("En cours")
-        self.reload_affichage()
+        temp=self.dico[num+1]
+        
+        lettre=""
+        for i in range (25):
+            lettre+=temp[i+1]
+        lettre+=temp[0]
+        self.dico[num+1]=lettre
+        print(self.dico[num+1])
+        self.creer_fleches()
     
     def fleche_bas(self, num):
         #fonction de rotaaate
         print("En cours")
-        self.reload_affichage()
+        print(self.dico[num+1])
+        
+        self.affichage_cylindre()
+        self.creer_fleches()
 
 
     #Fonction pour ajouter ou supprimer un numéro de cylindre de la clé
@@ -79,13 +90,13 @@ class chiffrement:
         
         #Si la clé est complète on reload l'affichage et on ajoute les fleches
         if len(self.cle) == n:
+            
             self.reload_affichage()
             self.creer_fleches()
 
 
 
     def reload_affichage(self):
-        #Surpression des bouttons et des anciens cylindres
         for elements in self.root.winfo_children():
             elements.destroy()
         #Affichage des cylindres dans l'ordre de la cle
