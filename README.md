@@ -1,18 +1,37 @@
 # Jefferson-Cylinder
 
+prob :
+
+Pas tout le temps et pas sûr:
+Change plusieures ligne au lieu d'une : change toujours la ligne 1 et 2 alors que bah non en fait
+
+
+
 A faire du plus au moins urgent :
 
-Finir l'affichage graphique -> test de tkinter dans test_tkinter.py
+Finir l'affichage graphique :
 
     ETAPES :
 
-    -> ligne 59 : ajouter le bouton pour faire le chiffrement ou non : si oui alors on fait le chiffrement et on affiche le résultat sinon on réaffiche les boutons pour changer la clé
+    URGENT
+    -> finir la partie chiffrement : affichage clear / chiffré - puis bouton pour finir le chiffrement & afficher la clé et le nombre de ligne a sauter pour avoir la phrase en clair
 
-    -> Ajouter les boutons pour rotate  le cylindre si le bouton chiffrement est activé
+    URGENT
+    -> changer le code : quand on lance le fichier affichage_graphique.py on doit tomber sur une fenetre qui propose chiffrage / déchiffrage
 
-    -> faire la fonction de rotate de cylindre (decaler les lettres de 1)
 
-    -> Menu pour chiffrer / déchiffrer avant tout l'affichage (donc peut etre nouvelle fenetre)
+    -> Faire la partie déchifrement : quand elle est lancé : prend le fichier cylindre.txt et demande a l'utilisateur si c'est bien le bon cylindre.txt (si non on lui demande de le changer) 
+    
+    ////////////
+    Puis demande la clé (si non on lui demande de la changer) 
+                    OU
+    On fait comme dans la partie chiffrage : on affiche les cylindre et on reprend le meme systeme pour choisir la clé
+    ////////////
+
+    Puis affiche les cylindres dans le bon ordre 
+
+    (A voir si on met un truc pour montrer ou est la ligne en clair et la ligne chiffré)
+
 
 
 
@@ -30,6 +49,7 @@ Pour l'affichage graphique on peut :
 
     Faire un seul fichier avec un menu au début qui propose chiffrement/déchiffrement
 
+    Ajouter un bouton pour faire le chiffrement ou non : si oui alors on continue et affiche les fleches sinon on réaffiche les boutons pour changer la clé
 
 Ajouter des commentaires à chaque fonction pour les expliquer
 
