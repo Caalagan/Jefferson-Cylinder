@@ -8,7 +8,7 @@ class chiffrement:
         self.phrase = phrase
         self.phrase_chiffré = ""
         self.cle = []
-        
+        #Génération des cylindres
         #Ecriture dans un fichier txt de n ligne (pas besoin de clear ça le fait tout seul)
         with open ("cylindre.txt", "w+") as fichier:
             for i in range (n):
@@ -16,8 +16,8 @@ class chiffrement:
 
         self._get_dico_()
 
+        #Suppression de la génération de clé
 
-        #Création de la fenetre
         self.root = Tk()
         self.root.title("Jefferson's Cylinder")
         self.root.geometry("500x700")
@@ -25,60 +25,27 @@ class chiffrement:
         self.creer_boutton_cle()
         
     def affichage_cylindre(self):
-        #Creation d`un label a chaque colonne
+        #Creation d`un label a chaque colonne et d`un bouton pour chaque cylindre
         for i in range (n):
             ligne=""
             VarCylindre = "label"+str(i)
+            VarBoutton = "boutton"+str(i)
             VarTexte = self.dico[i+1]
             for caractere in VarTexte:
-                ligne += ("   " + caractere + "\n")
+                ligne += ("" + caractere + "\n")
             VarCylindre = Label(self.root, text=ligne)
             VarCylindre.grid(row=0, column=i, sticky="w")
     
     #ajouter un boutton pour chaque cylindre
     def creer_boutton_cle(self):
         for i in range (n):
-            VarBoutton = Button(self.root, text=i+1, relief = FLAT, command=lambda i=i: self.boutton(i))
+            VarBoutton = "boutton"+str(i)
+            VarBoutton = Button(self.root, text=i+1, command=lambda i=i: self.boutton(i))
             VarBoutton.grid(row=1, column=i, sticky="w")
-            self.AffichageCle = Label(self.root, text=self.cle)
-            self.AffichageCle.grid(row=2, column=0, columnspan=100)
-    
-    #ajouter deux fleches pour chaque cylindre 
-    def creer_fleches(self):
-        for i in range (n):
-            VarFlecheHaut = Button(self.root, text="^\n|", relief = FLAT, command=lambda i=i: self.fleche_haut(i))
-            VarFlecheHaut.grid(row=1, column=i, sticky="w")
+        self.AffichageCle = Label(self.root, text=self.cle)
+        self.AffichageCle.grid(row=2, column=0, columnspan=n, sticky="w")
+        self.AffichageCle.config(text=self.cle)
         
-        for i in range (n):
-            VarFlecheBas = Button(self.root, text="|\nv", relief = FLAT, command=lambda i=i: self.fleche_bas(i))
-            VarFlecheBas.grid(row=2, column=i, sticky="w")
-
-    #Fonction pour rotate le cylindre vers le haut
-    def fleche_haut(self, num):
-
-        temp=self.dico[num+1]
-        lettre=""
-        for i in range (25):
-            lettre+=temp[i+1]
-        lettre+=temp[0]
-        lettre+="\n"
-        self.dico[num+1]=lettre
-        self.reload_affichage()
-        self.creer_fleches()
-    
-    #Fonction pour rotate le cylindre vers le bas
-    def fleche_bas(self, num):
-
-        temp=self.dico[num+1]
-        lettre=temp[25]
-        for i in range (25):
-            lettre+=temp[i]
-        lettre+="\n"
-        self.dico[num+1]=lettre
-        self.reload_affichage()
-        self.creer_fleches()
-
-
     #Fonction pour ajouter ou supprimer un numéro de cylindre de la clé
     def boutton(self, num):
         PeutAjouter = True
@@ -91,14 +58,14 @@ class chiffrement:
             self.cle.append(num+1)
         self.AffichageCle.config(text=self.cle)
         
-        #Si la clé est complète on reload l'affichage et on ajoute les fleches
+        #Si la clé est complète on reload l'affichage et on ajoute le boutton pour chiffrer la phrase ou non
         if len(self.cle) == n:
             self.reload_affichage()
-            self.creer_fleches()
 
 
 
     def reload_affichage(self):
+        #Surpression des bouttons et des anciens cylindres
         for elements in self.root.winfo_children():
             elements.destroy()
         #Affichage des cylindres dans l'ordre de la cle
