@@ -29,7 +29,7 @@ class chiffrement:
 
          # Affichage du Button , de la clé et des lignes à sauter
         self.finish_button = Button(self.root, text="Terminer le chiffrement", command=self.afficher_resultat)
-        self.finish_button.grid(row=3, column=0, columnspan=self.n, sticky="e")
+        self.finish_button.grid(row=3, column=0, columnspan=self.n, sticky="w")
         self.key_label = Label(self.root, text="Clé : ")
         self.key_label.grid(row=4, column=0, sticky="e")
         self.lines_label = Label(self.root, text="Lignes à sauter : ")
@@ -65,9 +65,9 @@ class chiffrement:
     def affichage_cylindre(self):
         #Creation d`un label a chaque colonne et d`un bouton pour chaque cylindre
         for i in range (n):
-            ligne=""
+            ligne=" "
             VarCylindre = "label"+str(i)
-            VarBoutton = "boutton"+str(i)
+            Varbutton = "button"+str(i)
             VarTexte = self.dico[i+1]
             for caractere in VarTexte:
                 ligne += (" " + caractere + "\n")
@@ -120,7 +120,7 @@ class chiffrement:
             VarBoutton = Button(self.root, text=i+1, command=lambda i=i: self.boutton(i))
             VarBoutton.grid(row=1, column=i, sticky="w")
         self.AffichageCle = Label(self.root, text=self.cle)
-        self.AffichageCle.grid(row=2, column=0, columnspan=100)
+        self.AffichageCle.grid(row=1, column=0, columnspan=2)
        
         
     #Fonction pour ajouter ou supprimer un numéro de cylindre de la clé
