@@ -24,10 +24,10 @@ class chiffrement:
         self.root.geometry("500x700")
         self.affichage_cylindre()
         self.creer_boutton_cle()
-        self.clear_label = Label(self.root, text="CLEAR")
-        self.clear_label.grid(row=0, column=n+1, sticky="e")
-        self.cipher_label = Label(self.root, text="CIPHER ")
-        self.cipher_label.grid(row=1, column=n+1, sticky="e")
+       
+       
+
+
         
         
     def affichage_cylindre(self):
@@ -41,11 +41,50 @@ class chiffrement:
                 ligne += ("" + caractere + "\n")
             VarCylindre = Label(self.root, text=ligne)
             VarCylindre.grid(row=0, column=i, sticky="w")
-    
+     # Affichage de CLEAR et CIPHER
+        self.clear_label = Label(self.root, text="CLEAR")
+        self.clear_label.grid(row=0, column=n+1, sticky="e")
+        self.cipher_label = Label(self.root, text="CIPHER ")
+        self.cipher_label.grid(row=1, column=n+1, sticky="e")
+        #ajouter deux fleches pour chaque cylindre 
+    def creer_fleches(self):
+        for i in range (n):
+            VarFlecheHaut = Button(self.root, text="^\n|", relief = FLAT, command=lambda i=i: self.fleche_haut(i))
+            VarFlecheHaut.grid(row=1, column=i, sticky="w")
+
+        for i in range (n):
+            VarFlecheBas = Button(self.root, text="|\nv", relief = FLAT, command=lambda i=i: self.fleche_bas(i))
+            VarFlecheBas.grid(row=2, column=i, sticky="w")
+
+    #Fonction pour rotate le cylindre vers le haut
+    def fleche_haut(self, num):
+
+        temp=self.dico[num+1]
+        lettre=""
+        for i in range (25):
+            lettre+=temp[i+1]
+        lettre+=temp[0]
+        lettre+="\n"
+        self.dico[num+1]=lettre
+        self.reload_affichage()
+        self.creer_fleches()
+
+    #Fonction pour rotate le cylindre vers le bas
+    def fleche_bas(self, num):
+
+        temp=self.dico[num+1]
+        lettre=temp[25]
+        for i in range (25):
+            lettre+=temp[i]
+        lettre+="\n"
+        self.dico[num+1]=lettre
+        self.reload_affichage()
+        self.creer_fleches()
+
     #ajouter un boutton pour chaque cylindre
     def creer_boutton_cle(self):
         for i in range (n):
-            VarBoutton = "boutton"+str(i)
+            VarBoutton = "button"+str(i)
             VarBoutton = Button(self.root, text=i+1, command=lambda i=i: self.boutton(i))
             VarBoutton.grid(row=1, column=i, sticky="w")
         self.AffichageCle = Label(self.root, text=self.cle)
@@ -93,7 +132,7 @@ class chiffrement:
             for i, ligne in enumerate(fichier):
                 self.dico[i+1] = ligne
 
-
+    
 
 
     #Génération d'un tirage aléatoire de 26 lettres
