@@ -5,8 +5,6 @@ prob :
 Pas tout le temps et pas sûr:
 Change plusieures ligne au lieu d'une : change toujours la ligne 1 et 2 alors que bah non en fait
 
-
-
 A faire du plus au moins urgent :
 
 Finir l'affichage graphique :
@@ -14,26 +12,23 @@ Finir l'affichage graphique :
     ETAPES :
 
     URGENT
-    -> finir la partie chiffrement : affichage clear / chiffré - puis bouton pour finir le chiffrement & afficher la clé et le nombre de ligne a sauter pour avoir la phrase en clair
+    -> finir la partie chiffrement : affichage clear / chiffré (Mieux les placer ) - puis bouton pour finir le chiffrement & afficher la clé et le nombre de ligne a sauter pour avoir la phrase en clair( nombre de ligne a sauter a finir )
 
     URGENT
     -> changer le code : quand on lance le fichier affichage_graphique.py on doit tomber sur une fenetre qui propose chiffrage / déchiffrage
 
 
-    -> Faire la partie déchifrement : quand elle est lancé : prend le fichier cylindre.txt et demande a l'utilisateur si c'est bien le bon cylindre.txt (si non on lui demande de le changer) 
-    
+    -> Faire la partie déchifrement : quand elle est lancé : prend le fichier cylindre.txt et demande a l'utilisateur si c'est bien le bon cylindre.txt (si non on lui demande de le changer)
+
     ////////////
-    Puis demande la clé (si non on lui demande de la changer) 
+    Puis demande la clé (si non on lui demande de la changer)
                     OU
     On fait comme dans la partie chiffrage : on affiche les cylindre et on reprend le meme systeme pour choisir la clé
     ////////////
 
-    Puis affiche les cylindres dans le bon ordre 
+    Puis affiche les cylindres dans le bon ordre
 
     (A voir si on met un truc pour montrer ou est la ligne en clair et la ligne chiffré)
-
-
-
 
 Voies d'améliorations :
 
@@ -54,9 +49,6 @@ Pour l'affichage graphique on peut :
 Ajouter des commentaires à chaque fonction pour les expliquer
 
 Prendre en compte les accents
-
-
-
 
 Comment ça marche :
 
@@ -82,12 +74,9 @@ Déchiffrer un message :
 
 1. Arranger les disques selon la clé
 
-2. Faire pivoter les disques de telle sorte que le message chiffré apparaisse sur une même ligne du cylindre   
+2. Faire pivoter les disques de telle sorte que le message chiffré apparaisse sur une même ligne du cylindre
 
 3. Le message d’origine est le contenu de la sixième ligne précédente
-
-
-
 
 Foncionnalitées a implémenter (Version console):
 
@@ -97,20 +86,15 @@ Foncionnalitées a implémenter (Version console):
 
 3. Lecture d'un fichier texte dont chaque ligne contient une permutation des 26 lettres de l’alphabet en majuscules et création d'un dictionnaire dont les clés sont les entiers compris entre un 1 et le nombre de lignes du fichier, la valeur correspondante à une clé i étant la i-ème ligne du fichier.
 
-(Validité d'une clé)
-4. Vérification si une liste de n entiers est une permutation des entiers compris (au sens large) entre 1 et n.
+(Validité d'une clé) 4. Vérification si une liste de n entiers est une permutation des entiers compris (au sens large) entre 1 et n.
 
-(Validité d'une clé)
-5. Génération d'une permutation des entiers compris (au sens large) entre 1 et n.
+(Validité d'une clé) 5. Génération d'une permutation des entiers compris (au sens large) entre 1 et n.
 
-(Chiffrement d'une seule lettre)
-6. Chiffrement d'une lettre relativement à une permutation des 26 lettres de l’alphabet en majuscules : on retourne la lettre située 6 positions après elle dans la permutation. On suppose bien sûr que l’alphabet en question est circulaire.
+(Chiffrement d'une seule lettre) 6. Chiffrement d'une lettre relativement à une permutation des 26 lettres de l’alphabet en majuscules : on retourne la lettre située 6 positions après elle dans la permutation. On suppose bien sûr que l’alphabet en question est circulaire.
 
 7. À partir d'un cylindre, i.e. un dictionnaire comme décrit précédemment, et d'une clé, i.e. l'ordre des cylindres, chiffrer un texte selon l'algorithme de Jefferson.
 
 8. Même chose mais cette fois pour déchiffrer un texte.
-
-
 
 Fonctionnalitées a implémenter (Version graphique): (CF images du cours)
 
@@ -118,15 +102,9 @@ Fonctionnalitées a implémenter (Version graphique): (CF images du cours)
 
 2. En cliquant successivement sur les nombres de la dernière ligne on peut alors constituer la clé
 
-3. On réordonne alors les cylindres selon la clé 
+3. On réordonne alors les cylindres selon la clé
 
 4. Grâce aux flèches (flèches cliquable avec la souris) on peut alors faire pivoter les cylindres et ainsi choisir le texte à chiffrer puis récupérer le texte une fois chiffré
-
-
-
-
-
-
 
 Bonus :
 
