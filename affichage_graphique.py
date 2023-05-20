@@ -27,6 +27,38 @@ class chiffrement:
        
        
 
+         # Affichage du Button , de la clé et des lignes à sauter
+        self.finish_button = Button(self.root, text="Terminer le chiffrement", command=self.afficher_resultat)
+        self.finish_button.grid(row=3, column=0, columnspan=self.n, sticky="e")
+        self.key_label = Label(self.root, text="Clé : ")
+        self.key_label.grid(row=4, column=0, sticky="e")
+        self.lines_label = Label(self.root, text="Lignes à sauter : ")
+        self.lines_label.grid(row=5, column=0, sticky="e")
+
+    
+    def afficher_resultat(self):
+    # Suppression des boutons et des labels
+        for elements in self.root.winfo_children():
+            elements.destroy()
+
+    # Affichage du résultat chiffré
+        self.cipher_result_label = Label(self.root, text="Texte chiffré: " + self.phrase_chiffré)
+        self.cipher_result_label.grid(row=0, column=self.n+1, sticky="w")
+
+    # Affichage du résultat déchiffré
+        self.clear_result_label = Label(self.root, text="Texte clair: " + self.phrase)
+        self.clear_result_label.grid(row=1, column=self.n+1, sticky="w")
+
+    # Affichage du bouton pour quitter
+        self.quit_button = Button(self.root, text="Quitter", command=self.root.destroy)
+        self.quit_button.grid(row=2, column=self.n+1, sticky="w")
+
+    # Affichage la clé et le nombre de ligne a sauter pour avoir la phrase en clair
+        self.key_result_label = Label(self.root, text="Clé: " + str(self.cle))
+        self.key_result_label.grid(row=3, column=self.n+1, sticky="w")
+        self.lines_result_label = Label(self.root, text="Lignes à sauter: " + str(self.cle))
+        self.lines_result_label.grid(row=4, column=self.n+1, sticky="w")
+
 
         
         
@@ -38,7 +70,7 @@ class chiffrement:
             VarBoutton = "boutton"+str(i)
             VarTexte = self.dico[i+1]
             for caractere in VarTexte:
-                ligne += ("" + caractere + "\n")
+                ligne += (" " + caractere + "\n")
             VarCylindre = Label(self.root, text=ligne)
             VarCylindre.grid(row=0, column=i, sticky="w")
      # Affichage de CLEAR et CIPHER
@@ -88,8 +120,8 @@ class chiffrement:
             VarBoutton = Button(self.root, text=i+1, command=lambda i=i: self.boutton(i))
             VarBoutton.grid(row=1, column=i, sticky="w")
         self.AffichageCle = Label(self.root, text=self.cle)
-        self.AffichageCle.grid(row=2, column=0, columnspan=n, sticky="w")
-        self.AffichageCle.config(text=self.cle)
+        self.AffichageCle.grid(row=2, column=0, columnspan=100)
+       
         
     #Fonction pour ajouter ou supprimer un numéro de cylindre de la clé
     def boutton(self, num):
