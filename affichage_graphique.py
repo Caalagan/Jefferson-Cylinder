@@ -8,6 +8,7 @@ class chiffrement:
         self.phrase = phrase
         self.phrase_chiffré = ""
         self.cle = []
+  
         #Génération des cylindres
         #Ecriture dans un fichier txt de n ligne (pas besoin de clear ça le fait tout seul)
         with open ("cylindre.txt", "w+") as fichier:
@@ -23,6 +24,11 @@ class chiffrement:
         self.root.geometry("500x700")
         self.affichage_cylindre()
         self.creer_boutton_cle()
+        self.clear_label = Label(self.root, text="CLEAR")
+        self.clear_label.grid(row=0, column=n+1, sticky="e")
+        self.cipher_label = Label(self.root, text="CIPHER ")
+        self.cipher_label.grid(row=1, column=n+1, sticky="e")
+        
         
     def affichage_cylindre(self):
         #Creation d`un label a chaque colonne et d`un bouton pour chaque cylindre
