@@ -1,15 +1,12 @@
 import random
 from tkinter import *
-
 class chiffrement:
-
     def __init__(self, nombre_de_cylindre, phrase):
         self.n = nombre_de_cylindre
         self.phrase = phrase
         self.phrase_chiffré = ""
         self.cle = []
-  
-        #Génération des cylindres
+
         #Ecriture dans un fichier txt de n ligne (pas besoin de clear ça le fait tout seul)
         with open ("cylindre.txt", "w+") as fichier:
             for i in range (n):
@@ -17,67 +14,38 @@ class chiffrement:
 
         self._get_dico_()
 
-        #Suppression de la génération de clé
 
+        #Création de la fenetre
         self.root = Tk()
         self.root.title("Jefferson's Cylinder")
         self.root.geometry("500x700")
         self.affichage_cylindre()
         self.creer_boutton_cle()
-       
-       
 
-         # Affichage du Button , de la clé et des lignes à sauter
-        self.finish_button = Button(self.root, text="Terminer le chiffrement", command=self.afficher_resultat)
-        self.finish_button.grid(row=3, column=0, columnspan=self.n, sticky="w")
-        self.key_label = Label(self.root, text="Clé : ")
-        self.key_label.grid(row=4, column=0, sticky="e")
-        self.lines_label = Label(self.root, text="Lignes à sauter : ")
-        self.lines_label.grid(row=5, column=0, sticky="e")
-
-    
-    def afficher_resultat(self):
-    # Suppression des boutons et des labels
-        for elements in self.root.winfo_children():
-            elements.destroy()
-
-    # Affichage du résultat chiffré
-        self.cipher_result_label = Label(self.root, text="Texte chiffré: " + self.phrase_chiffré)
-        self.cipher_result_label.grid(row=0, column=self.n+1, sticky="w")
-
-    # Affichage du résultat déchiffré
-        self.clear_result_label = Label(self.root, text="Texte clair: " + self.phrase)
-        self.clear_result_label.grid(row=1, column=self.n+1, sticky="w")
-
-    # Affichage du bouton pour quitter
-        self.quit_button = Button(self.root, text="Quitter", command=self.root.destroy)
-        self.quit_button.grid(row=2, column=self.n+1, sticky="w")
-
-    # Affichage la clé et le nombre de ligne a sauter pour avoir la phrase en clair
-        self.key_result_label = Label(self.root, text="Clé: " + str(self.cle))
-        self.key_result_label.grid(row=3, column=self.n+1, sticky="w")
-        self.lines_result_label = Label(self.root, text="Lignes à sauter: " + str(self.cle))
-        self.lines_result_label.grid(row=4, column=self.n+1, sticky="w")
+ 
 
 
-        
-        
     def affichage_cylindre(self):
-        #Creation d`un label a chaque colonne et d`un bouton pour chaque cylindre
+        #Creation d`un label a chaque colonne
         for i in range (n):
-            ligne=" "
+            ligne=""
             VarCylindre = "label"+str(i)
-            Varbutton = "button"+str(i)
             VarTexte = self.dico[i+1]
             for caractere in VarTexte:
-                ligne += (" " + caractere + "\n")
+                ligne += ("   " + caractere + "\n")
             VarCylindre = Label(self.root, text=ligne)
             VarCylindre.grid(row=0, column=i, sticky="w")
-     # Affichage de CLEAR et CIPHER
-        self.clear_label = Label(self.root, text="CLEAR")
-        self.clear_label.grid(row=0, column=n+1, sticky="e")
-        self.cipher_label = Label(self.root, text="CIPHER ")
-        self.cipher_label.grid(row=1, column=n+1, sticky="e")
+
+
+    #ajouter un boutton pour chaque cylindre
+    def creer_boutton_cle(self):
+        for i in range (n):
+            VarBoutton = Button(self.root, text=i+1, relief = FLAT, command=lambda i=i: self.boutton(i))
+            VarBoutton.grid(row=1, column=i, sticky="w")
+            self.AffichageCle = Label(self.root, text=self.cle)
+            self.AffichageCle.grid(row=2, column=0, columnspan=100)
+  
+
         #ajouter deux fleches pour chaque cylindre 
     def creer_fleches(self):
         for i in range (n):
@@ -113,16 +81,6 @@ class chiffrement:
         self.reload_affichage()
         self.creer_fleches()
 
-    #ajouter un boutton pour chaque cylindre
-    def creer_boutton_cle(self):
-        for i in range (n):
-            VarBoutton = "button"+str(i)
-            VarBoutton = Button(self.root, text=i+1, command=lambda i=i: self.boutton(i))
-            VarBoutton.grid(row=1, column=i, sticky="w")
-        self.AffichageCle = Label(self.root, text=self.cle)
-        self.AffichageCle.grid(row=1, column=0, columnspan=2)
-       
-        
     #Fonction pour ajouter ou supprimer un numéro de cylindre de la clé
     def boutton(self, num):
         PeutAjouter = True
@@ -134,20 +92,56 @@ class chiffrement:
         if PeutAjouter == True:
             self.cle.append(num+1)
         self.AffichageCle.config(text=self.cle)
-        
-        #Si la clé est complète on reload l'affichage et on ajoute le boutton pour chiffrer la phrase ou non
+
+        #Si la clé est complète on reload l'affichage et on ajoute les fleches
         if len(self.cle) == n:
             self.reload_affichage()
+            self.creer_fleches()
 
-
-
+   
     def reload_affichage(self):
-        #Surpression des bouttons et des anciens cylindres
         for elements in self.root.winfo_children():
             elements.destroy()
         #Affichage des cylindres dans l'ordre de la cle
         self.modification_cylindre()
         self.affichage_cylindre()
+        # Affichage de CLEAR et CIPHER
+        self.clear_label = Label(self.root, text="CLEAR")
+        self.clear_label.grid(row=0, column=n+1, sticky="e")
+        self.cipher_label = Label(self.root, text="CIPHER ")
+        self.cipher_label.grid(row=1, column=n+1, sticky="e")
+    
+
+        # Affichage du résultat chiffré
+        self.cipher_result_label = Label(self.root, text="Texte chiffré: " + self.phrase_chiffré)
+        self.cipher_result_label.grid(row=2, column=self.n+1, sticky="w")
+
+        # Affichage du résultat déchiffré
+        self.clear_result_label = Label(self.root, text="Texte clair: " + self.phrase)
+        self.clear_result_label.grid(row=3, column=self.n+1, sticky="w")
+
+        # Affichage du bouton pour quitter
+        self.quit_button = Button(self.root, text="Quitter", command=self.root.destroy)
+        self.quit_button.grid(row=4, column=self.n+1, sticky="w")
+
+        # Affichage la clé et le nombre de ligne a sauter pour avoir la phrase en clair
+        self.key_result_label = Label(self.root, text="Clé: " + str(self.cle))
+        self.key_result_label.grid(row=5, column=self.n+1, sticky="w")
+    
+
+        # Affichage du nombre de ligne a sauter
+        self.lines_result_label = Label(self.root, text="Lignes à sauter: " + str(self.phrase_chiffré.count("\n")))
+        self.lines_result_label.grid(row=6, column=self.n+1, sticky="w")
+
+
+
+
+        
+
+     
+
+
+
     
     def modification_cylindre(self):
         #on modifie le fichier cylindre.txt pour qu'il corresponde à la clé
@@ -164,9 +158,6 @@ class chiffrement:
             for i, ligne in enumerate(fichier):
                 self.dico[i+1] = ligne
 
-    
-
-
     #Génération d'un tirage aléatoire de 26 lettres
     def tirage(self):
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -179,7 +170,7 @@ class chiffrement:
             tirage += temp
         tirage += "\n"
         return tirage
-
+    
     #chiffrement d'une lettre (lettre située à la position +6 de la chaine de caractère)
     def chiffrement_lettre(self, lettre, cle):
         cylindre = self.dico[cle]
@@ -188,7 +179,7 @@ class chiffrement:
         if position > 25:
             position -= 26
         return cylindre[position]
-
+    
     #chiffrement d'une phrase
     def chiffrement_phrase(self):
         for i in range(len(self.phrase)):
@@ -201,7 +192,9 @@ class chiffrement:
         return self.phrase_chiffré
 
 
-
+    
+    
+    
 #Déchiffrement
 class dechiffrement:
     def __init__(self, phrase_chiffré, cle):
@@ -216,7 +209,6 @@ class dechiffrement:
             for i, ligne in enumerate(fichier):
                 self.dico[i+1] = ligne
 
-
     def dechiffrement_lettre(self, lettre, cle):
         cylindre = self.dico[cle]
         position = cylindre.find(lettre)
@@ -224,7 +216,7 @@ class dechiffrement:
         if position < 0:
             position += 26
         return cylindre[position]
-
+    
     def dechiffrement_phrase(self):
         for i in range(len(self.phrase_chiffré)):
             self.phrase_dechiffree += self.dechiffrement_lettre(self.phrase_chiffré[i], self.cle[i])
@@ -234,7 +226,7 @@ class dechiffrement:
 
     def return_dechiffrement(self):
         return self.phrase_dechiffree
-
+    
 phrase = input("Votre phrase : ")
 phrase = phrase.replace(" ", "")
 phrase = phrase.upper()
@@ -246,11 +238,9 @@ chiffrage.root.mainloop()
 #chiffrage.chiffrement_phrase()
 #chiffrage.afficher_chiffrement()
 #phrase_chiffree = chiffrage.return_chiffrement()
-
-
 #dechiffrage = dechiffrement(phrase_chiffree, chiffrage.cle)
 #dechiffrage._get_dico_()
 #dechiffrage.dechiffrement_phrase()
-
 #dechiffrage.afficher_dechiffrement()
 #phrase_dechiffree = dechiffrage.return_dechiffrement()
+
