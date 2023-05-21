@@ -1,0 +1,10 @@
+Ce projet est une recréation du cylindre de Jefferson en Python.
+
+Pour y accède :
+
+Télécharge le code en ZIP, extraire les fichiers puis ouvrir chiffrement_cylindre_random.py pour l'affichage console 
+ou ouvre affichage_graphique.py pour l'affichage graphique sous un éditeur de code.
+
+Il faut ensuite lancer un des deux codes depuis l'éditeur de code
+
+Et puis, amusez-vous à chiffre et déchiffrent des phrases.
