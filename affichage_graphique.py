@@ -107,9 +107,9 @@ class chiffrement:
         self.affichage_cylindre()
         # Affichage de CLEAR et CIPHER
         self.clear_label = Label(self.root, text="CLEAR")
-        self.clear_label.grid(row=0, column=n+1, sticky="e")
+        self.clear_label.grid(row=0,  column=n+1,padx = 1, pady=5)
         self.cipher_label = Label(self.root, text="CIPHER ")
-        self.cipher_label.grid(row=1, column=n+1, sticky="e")
+        self.cipher_label.grid(row=0, column=n+1, sticky="s",  padx= 1, pady=5)
     
 
         # Affichage du résultat chiffré
@@ -134,11 +134,6 @@ class chiffrement:
         self.lines_result_label.grid(row=6, column=self.n+1, sticky="w")
 
 
-
-
-        
-
-     
 
 
 
