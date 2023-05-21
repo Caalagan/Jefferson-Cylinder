@@ -78,11 +78,11 @@ class chiffrement:
     #ajouter deux fleches pour chaque cylindre 
     def creer_fleches(self):
         for i in range (self.n):
-            VarFlecheHaut = Button(self.root, text="^\n|", relief = FLAT, command=lambda i=i: self.fleche_haut(i))
+            VarFlecheHaut = Button(self.root, text="\u25b2\n", relief = FLAT, command=lambda i=i: self.fleche_haut(i))
             VarFlecheHaut.grid(row=1, column=i, sticky="w")
             
         for i in range (self.n):
-            VarFlecheBas = Button(self.root, text="|\nv", relief = FLAT, command=lambda i=i: self.fleche_bas(i))
+            VarFlecheBas = Button(self.root, text="\n\u25bc", relief = FLAT, command=lambda i=i: self.fleche_bas(i))
             VarFlecheBas.grid(row=2, column=i, sticky="w")
 
 
@@ -151,9 +151,10 @@ class chiffrement:
         
 
         # Affichage de CLEAR et CIPHER
-        self.clear_label = Label(self.root, text="<- CLEAR")
+
+        self.clear_label = Label(self.root, text="\u2190  CLEAR")
         self.clear_label.grid(row=0,column=self.n+1,sticky="nwe")
-        self.cipher_label = Label(self.root, text="<- CHIFFRE")
+        self.cipher_label = Label(self.root, text="\u2190 CHIFFRE")
         self.cipher_label.grid(row=0,column=self.n+1,sticky="we")
     
         
@@ -175,9 +176,20 @@ class chiffrement:
         self.skip_result_label = Label(self.root, text="Nombre de lignes à sauter: 15")
         self.skip_result_label.grid(row=5, column=self.n+1, sticky="w")
 
+        style_Quitter = {
+            'bg': '#f44336',     # Background color
+            'fg': 'white',       # Text color
+            'font': ('Arial', 12, 'bold'),  # Font style
+            'relief': 'raised',  # Button border style
+            'borderwidth': 2,    # Border width
+            'width': 10,         # Button width
+            'height': 1,         # Button height
+                        }
          # Affichage du bouton pour quitter
-        self.quit_button = Button(self.root, text="Quitter", command=self.root.destroy)
+        self.quit_button = Button(self.root, text="Quitter", command=self.root.destroy,**style_Quitter)
         self.quit_button.grid(row=6, column=self.n+1, sticky="w")
+
+      
 
     
     def modification_cylindre(self):
