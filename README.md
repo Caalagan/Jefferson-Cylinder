@@ -12,7 +12,7 @@ Finir l'affichage graphique :
     ETAPES :
 
     URGENT
-    -> finir la partie chiffrement : affichage clear / chiffré (Mieux les placer ) - puis bouton pour finir le chiffrement & afficher la clé et le nombre de ligne a sauter pour avoir la phrase en clair( nombre de ligne a sauter a finir )
+    -> finir la partie chiffrement : affichage clear / chiffré  - puis bouton pour finir le chiffrement & afficher la clé et le nombre de ligne a sauter pour avoir la phrase en clair( nombre de ligne a sauter a finir )
 
     URGENT
     -> changer le code : quand on lance le fichier affichage_graphique.py on doit tomber sur une fenetre qui propose chiffrage / déchiffrage
