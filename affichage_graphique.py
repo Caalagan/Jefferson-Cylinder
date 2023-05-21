@@ -56,25 +56,15 @@ class chiffrement:
 
 
     def affichage_cylindre(self):
-        #Creation d`un label a chaque colonne
-        if 1 in self.cle:
-            for i in self.cle:
-                ligne=""
-                VarCylindre = "label"+str(i)
-                VarTexte = self.dico[i]
-                for caractere in VarTexte:
-                    ligne += ("   " + caractere + "\n")
-                VarCylindre = Label(self.root, text=ligne)
-                VarCylindre.grid(row=0, column=i, sticky="w")
-        else :
-            for i in range(self.n):
-                ligne=""
-                VarCylindre = "label"+str(i)
-                VarTexte = self.dico[i+1]
-                for caractere in VarTexte:
-                    ligne += ("   " + caractere + "\n")
-                VarCylindre = Label(self.root, text=ligne)
-                VarCylindre.grid(row=0, column=i, sticky="w")
+        #Creation d`un label a chaque colonn
+        for i in range(self.n):
+            ligne=""
+            VarCylindre = "label"+str(i)
+            VarTexte = self.dico[i+1]
+            for caractere in VarTexte:
+                ligne += ("   " + caractere + "\n")
+            VarCylindre = Label(self.root, text=ligne)
+            VarCylindre.grid(row=0, column=i, sticky="w")
 
     #ajouter un boutton pour chaque cylindre
     def creer_boutton_cle(self):
@@ -90,10 +80,11 @@ class chiffrement:
         for i in range (self.n):
             VarFlecheHaut = Button(self.root, text="^\n|", relief = FLAT, command=lambda i=i: self.fleche_haut(i))
             VarFlecheHaut.grid(row=1, column=i, sticky="w")
-
+            
         for i in range (self.n):
             VarFlecheBas = Button(self.root, text="|\nv", relief = FLAT, command=lambda i=i: self.fleche_bas(i))
             VarFlecheBas.grid(row=2, column=i, sticky="w")
+
 
     #Fonction pour rotate le cylindre vers le haut3
     def fleche_haut(self, num):
@@ -134,6 +125,7 @@ class chiffrement:
 
         #Si la clé est complète on reload l'affichage et on ajoute les fleches
         if len(self.cle) == self.n:
+            self._get_dico_()
             self.reload_affichage()
             self.creer_fleches()
 
@@ -191,10 +183,9 @@ class chiffrement:
     def modification_cylindre(self):
         #on modifie le fichier cylindre.txt pour qu'il corresponde à la rotation en cours
         with open ("cylindre.txt", "w+") as fichier:
-            for i in range (self.n):
-                fichier.write(self.dico[i+1])
+            for i in self.cle:
+                fichier.write(self.dico[i])
         #recupération du nouveau dico
-        self._get_dico_()
 
     def _get_dico_(self):
         #Lecture du fichier : création d'un dictionnaire avec en clé le numéro de la ligne et en valeur la chaine de caractère
