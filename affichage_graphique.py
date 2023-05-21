@@ -165,7 +165,7 @@ class chiffrement:
 
         # Affichage de la phrase en clair
         self.clear_result_label = Label(self.root, text="Texte clair: " + self.phraseClair)
-        self.clear_result_label.grid(row=2, column=self.nbCylindre+1, sticky="e")
+        self.clear_result_label.grid(row=2, column=self.nbCylindre+1, sticky="w")
 
         # Affichage du résultat chiffré
         self.cipher_result_label = Label(self.root, text="Texte chiffré: " + self.phraseChiffre)
