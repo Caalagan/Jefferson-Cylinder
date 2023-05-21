@@ -2,7 +2,7 @@
 
 ## Présentation du projet
 
-Ce projet est une représentation du cylindre de Jefferson. Il permet de chiffrer et de déchiffrer un message à l'aide de cylindres. Le chiffrement de Jefferson est un chiffrement par substitution polyalphabétique. Il a été inventé par Thomas Jefferson en 1795. Il est basé sur un cylindre rotatif qui permet de chiffrer un message en utilisant plusieurs alphabets. Le cylindre est composé de 26 alphabets qui sont mélangés aléatoirement. Le chiffrement se fait en utilisant un alphabet différent à chaque lettre du message. Le déchiffrement se fait en utilisant le même alphabet que celui utilisé pour chiffrer la lettre. Le cylindre est composé de 26 alphabets qui sont mélangés aléatoirement. Le chiffrement se fait en utilisant un alphabet différent à chaque lettre du message. Le déchiffrement se fait en utilisant le même alphabet que celui utilisé pour chiffrer la lettre.
+Ce projet est une représentation du cylindre de Jefferson. Il permet de chiffrer et de déchiffrer un message à l'aide de cylindres. Le chiffrement de Jefferson est un chiffrement par substitution polyalphabétique. Il a été inventé par Thomas Jefferson en 1795. Il est basé sur un cylindre rotatif qui permet de chiffrer un message en utilisant plusieurs alphabets. Le cylindre est composé de 26 alphabets qui sont mélangés aléatoirement. Le chiffrement se fait en utilisant un alphabet différent à chaque lettre du message. Le déchiffrement se fait en utilisant le même alphabet que celui utilisé pour chiffrer la lettre. Le cylindre est composé de 26 alphabets qui sont mélangés aléatoirement.
 
 
 ## Installation
