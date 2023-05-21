@@ -1,7 +1,7 @@
 import random
 from tkinter import *
 
-class menu:
+class Menu:
     def __init__(self) -> None:
         #Création de la fenetre de menu
         self.root = Tk()
@@ -165,7 +165,7 @@ class chiffrement:
 
         # Affichage de la phrase en clair
         self.clear_result_label = Label(self.root, text="Texte clair: " + self.phraseClair)
-        self.clear_result_label.grid(row=2, column=self.nbCylindre+1, sticky="w")
+        self.clear_result_label.grid(row=2, column=self.nbCylindre+1, sticky="e")
 
         # Affichage du résultat chiffré
         self.cipher_result_label = Label(self.root, text="Texte chiffré: " + self.phraseChiffre)
@@ -189,13 +189,13 @@ class chiffrement:
             'width': 10,         # Button width
             'height': 1,         # Button height
                         }
-         # Affichage du bouton pour quitter
-        self.quit_button = Button(self.root, text="Menu", command=self.LancerMenu,**style_Quitter)
-        self.quit_button.grid(row=6, column=self.nbCylindre+1, sticky="w")
+         # Affichage du bouton pour Menu
+        self.boutonMenu = Button(self.root, text="Menu", command=self.LancerMenu, **style_Quitter)
+        self.boutonMenu.grid(row=6, column=self.nbCylindre+1, sticky="w")
 
     def LancerMenu(self):
         self.root.destroy()
-        BackMenu = menu()
+        BackMenu = Menu()
         BackMenu.root.mainloop()
 
     
@@ -230,7 +230,6 @@ class chiffrement:
         tirage += "\n"
         return tirage
     
-
     
 #Déchiffrement
 class dechiffrement:
@@ -383,9 +382,14 @@ class dechiffrement:
             'width': 10,         # Button width
             'height': 1,         # Button height
                         }
-         # Affichage du bouton pour quitter
-        self.quit_button = Button(self.root, text="Quitter", command=self.root.destroy,**style_Quitter)
-        self.quit_button.grid(row=6, column=self.nbCylindre+1, sticky="w")
+        # Affichage du bouton pour Menu
+        self.boutonMenu = Button(self.root, text="Menu", command=self.LancerMenu, **style_Quitter)
+        self.boutonMenu.grid(row=6, column=self.nbCylindre+1, sticky="w")
+
+    def LancerMenu(self):
+        self.root.destroy()
+        BackMenu = Menu()
+        BackMenu.root.mainloop()
 
       
 
@@ -423,6 +427,7 @@ class dechiffrement:
     
 
 
-menu = menu()
+menu = Menu()
 menu.root.mainloop()
+
 
