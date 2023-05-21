@@ -5,6 +5,7 @@ class Menu:
     def __init__(self) -> None:
         #Création de la fenetre de menu
         self.root = Tk()
+        self.root.title("Jefferson's Cylinder")
         self.root.geometry("400x400")
         BouttonChiffrement = Button(self.root, text="Chiffrement", command=self.chiffrement)
         BouttonChiffrement.pack()
@@ -14,8 +15,8 @@ class Menu:
     def chiffrement(self):
         for elements in self.root.winfo_children():
             elements.destroy()
-        Text = Label(self.root, text="Le nombre de cylindre doit être supérieur à 0 !")
-        Text.pack()
+        self.Text = Label(self.root, text="Inserrez le nombre de cylindre que vous souhaitez utiliser :")
+        self.Text.pack()
         self.__number = IntVar()
         NbCylinders = Entry(self.root, textvariable=self.__number)
         NbCylinders.focus_set()
@@ -29,6 +30,9 @@ class Menu:
             self.root.destroy()
             phrase = chiffrement(self.__number.get())
             phrase.root.mainloop()
+        elif self.__number.get()<=0:
+            self.Text.configure(text="Inserrez un nombre de cylindre valide (supérieur à 0) :")
+
 
     def dechiffrement(self):
         self.root.destroy()
@@ -52,7 +56,10 @@ class chiffrement:
         #Création de la fenetre
         self.root = Tk()
         self.root.title("Jefferson's Cylinder")
-        self.root.geometry("400x800")
+        self.root.geometry("800x800")
+        #Affichage du titre
+        self.titre_label = Label(self.root, text="   \n ")
+        self.titre_label.grid(row=0, column=0, sticky="ew")
         self.affichage_cylindre()
         self.creer_boutton_cle()
 
@@ -68,26 +75,33 @@ class chiffrement:
             for caractere in VarTexte:
                 ligne += ("   " + caractere + "\n")
             VarCylindre = Label(self.root, text=ligne)
-            VarCylindre.grid(row=0, column=i, sticky="w")
+            VarCylindre.grid(row=1, column=i+1, sticky="w")
 
     #ajouter un boutton pour chaque cylindre
     def creer_boutton_cle(self):
+        #Affichage du titre
+        self.titre_label = Label(self.root, text="Vos cylindres : \n")
+        self.titre_label.grid(row=0, column=1, columnspan=100)
+
+        #Creation d`un label pour afficher la clé
+        label = Label(self.root, text="Choisissez la clé : \n")
+        label.grid(row=2, column=1, columnspan=100)
         for i in range (self.nbCylindre):
             VarBoutton = Button(self.root, text=i+1, relief = FLAT, command=lambda i=i: self.boutton(i))
-            VarBoutton.grid(row=1, column=i, sticky="w")
+            VarBoutton.grid(row=3, column=i+1, sticky="w")
             self.AffichageCle = Label(self.root, text=self.cle)
-            self.AffichageCle.grid(row=2, column=0, columnspan=100)
+            self.AffichageCle.grid(row=4, column=1, columnspan=100)
   
 
     #ajouter deux fleches pour chaque cylindre 
     def creer_fleches(self):
         for i in range (self.nbCylindre):
             VarFlecheHaut = Button(self.root, text="\u25b2\n", relief = FLAT, command=lambda i=i: self.fleche_haut(i))
-            VarFlecheHaut.grid(row=1, column=i, sticky="w")
+            VarFlecheHaut.grid(row=2, column=i+1, sticky="w")
             
         for i in range (self.nbCylindre):
             VarFlecheBas = Button(self.root, text="\n\u25bc", relief = FLAT, command=lambda i=i: self.fleche_bas(i))
-            VarFlecheBas.grid(row=2, column=i, sticky="w")
+            VarFlecheBas.grid(row=3, column=i+1, sticky="w")
 
 
     #Fonction pour rotate le cylindre vers le haut3
@@ -148,28 +162,29 @@ class chiffrement:
             elements.destroy()
 
         #Affichage des cylindres dans l'ordre de la cle
-                                                                                                    #self.modification_cylindre()
         self.affichage_cylindre()
         self.phrase_clair()
         self.phrase_chiffre()
         
+        #Affichage du titre
+        self.easter_egg = Label(self.root, text="                                                                                                                                                                                                                     \_(^^)_/ \n ")
+        self.easter_egg.grid(row=0, column=self.nbCylindre+2)
 
-        # Affichage de CLEAR et CIPHER
-
-        self.clear_label = Label(self.root, text="\u2190  CLEAR")
-        self.clear_label.grid(row=0,column=self.nbCylindre+1,sticky="new")
-        self.cipher_label = Label(self.root, text="\u2190 CHIFFRE")
-        self.cipher_label.grid(row=0,column=self.nbCylindre+1,sticky="ew")
+        # Affichage de CLEAR et CHIFFRE
+        self.clear_label = Label(self.root,  text="        CLEAR  \u2192")
+        self.clear_label.grid(row=1,column=0,sticky="new")
+        self.cipher_label = Label(self.root, text="      CHIFFRE  \u2192")
+        self.cipher_label.grid(row=1,column=0,sticky="ew")
     
 
         # Affichage la clé
         self.key_result_label = Label(self.root, text="Clé: " + str(self.cle))
-        self.key_result_label.grid(row=4, column=self.nbCylindre+1, sticky="w")
+        self.key_result_label.grid(row=2, column=self.nbCylindre+1, sticky="ew")
     
         
         # Affichage du nombre de ligne a sauter pour avoir la phrase en clair
         self.skip_result_label = Label(self.root, text="Nombre de lignes à sauter: 15")
-        self.skip_result_label.grid(row=5, column=self.nbCylindre+1, sticky="w")
+        self.skip_result_label.grid(row=3, column=self.nbCylindre+1, sticky="ew")
 
         style_Quitter = {
             'bg': '#f44336',     # Background color
@@ -182,19 +197,19 @@ class chiffrement:
                         }
          # Affichage du bouton pour Menu
         self.boutonMenu = Button(self.root, text="Return Menu", command=self.LancerMenu, **style_Quitter)
-        self.boutonMenu.grid(row=6, column=self.nbCylindre+1,padx=10, sticky="w")
+        self.boutonMenu.grid(row=7, column=0, sticky="w")
         style_Afficher = {
             'bg': 'green',     # Background color
             'fg': 'white',       # Text color
             'font': ('Arial', 12, 'bold'),  # Font style
             'relief': 'raised',  # Button border style
             'borderwidth': 2,    # Border width
-            'width': 10,         # Button width
+            'width': 15,         # Button width
             'height': 1,         # Button height
                         }
         # Boutton pour voir texte clair et chiffré dans une nouvelle fenêtre
-        self.boutonAfficher = Button(self.root, text="Afficher", command=self.afficher, **style_Afficher)
-        self.boutonAfficher.grid(row=6, column=self.nbCylindre+1,padx=125, sticky="w")
+        self.boutonAfficher = Button(self.root, text="Afficher le cryptage", command=self.afficher, **style_Afficher)
+        self.boutonAfficher.grid(row=7, column=self.nbCylindre+1, sticky="w")
 
     def LancerMenu(self):
         self.root.destroy()
@@ -206,7 +221,7 @@ class chiffrement:
         self.phrase_chiffre()
         self.affichage_cylindre()
         self.phrase = Toplevel()
-        self.phrase.title("Affichage")
+        self.phrase.title("Information sur le cryptage")
         self.phrase.geometry("500x500")
         self.phrase.resizable(width=False, height=False)
         self.phrase.config(bg="white")
@@ -214,6 +229,11 @@ class chiffrement:
         self.phraseClair.pack()
         self.phraseChiffre = Label(self.phrase, text="Texte chiffré: " + self.phraseChiffre, bg="white")
         self.phraseChiffre.pack()
+        self.cle_label = Label(self.phrase, text="Clé: " + str(self.cle), bg="white")
+        self.cle_label.pack()
+        self.cylindre = Label(self.phrase, text="Nom du fichier des cylindres : Cylindres.txt", bg="white")
+        self.cylindre.pack()
+        
         
 
       
@@ -267,7 +287,7 @@ class dechiffrement:
         #Création de la fenetre
         self.root = Tk()
         self.root.title("Jefferson's Cylinder")
-        self.root.geometry("400x800")
+        self.root.geometry("800x800")
         self.affichage_cylindre()
         self.creer_boutton_cle()
 
@@ -281,31 +301,37 @@ class dechiffrement:
             for caractere in VarTexte:
                 ligne += ("   " + caractere + "\n")
             VarCylindre = Label(self.root, text=ligne)
-            VarCylindre.grid(row=0, column=i, sticky="w")
+            VarCylindre.grid(row=1, column=i+1, sticky="w")
 
     #ajouter un boutton pour chaque cylindre
     def creer_boutton_cle(self):
+        #Affichage du titre
+        self.titre_label = Label(self.root, text="Vos cylindres : \n")
+        self.titre_label.grid(row=0, column=1, columnspan=100)
+
+        #Creation d`un label pour afficher la clé
+        label = Label(self.root, text="Choisissez la clé : \n")
+        label.grid(row=2, column=1, columnspan=100)
         for i in range (self.nbCylindre):
             VarBoutton = Button(self.root, text=i+1, relief = FLAT, command=lambda i=i: self.boutton(i))
-            VarBoutton.grid(row=1, column=i, sticky="w")
+            VarBoutton.grid(row=3, column=i+1, sticky="w")
             self.AffichageCle = Label(self.root, text=self.cle)
-            self.AffichageCle.grid(row=2, column=0, columnspan=100)
+            self.AffichageCle.grid(row=4, column=1, columnspan=100)
   
 
     #ajouter deux fleches pour chaque cylindre 
     def creer_fleches(self):
         for i in range (self.nbCylindre):
             VarFlecheHaut = Button(self.root, text="\u25b2\n", relief = FLAT, command=lambda i=i: self.fleche_haut(i))
-            VarFlecheHaut.grid(row=1, column=i, sticky="w")
+            VarFlecheHaut.grid(row=2, column=i+1, sticky="w")
             
         for i in range (self.nbCylindre):
             VarFlecheBas = Button(self.root, text="\n\u25bc", relief = FLAT, command=lambda i=i: self.fleche_bas(i))
-            VarFlecheBas.grid(row=2, column=i, sticky="w")
+            VarFlecheBas.grid(row=3, column=i+1, sticky="w")
 
 
     #Fonction pour rotate le cylindre vers le haut3
     def fleche_haut(self, num):
-
         temp=self.dico[num+1]
         lettre=""
         for i in range (25):
@@ -318,7 +344,6 @@ class dechiffrement:
 
     #Fonction pour rotate le cylindre vers le bas
     def fleche_bas(self, num):
-
         temp=self.dico[num+1]
         lettre=temp[25]
         for i in range (25):
@@ -361,28 +386,30 @@ class dechiffrement:
             elements.destroy()
 
         #Affichage des cylindres dans l'ordre de la cle
-        self.modification_cylindre()
         self.affichage_cylindre()
         self.phrase_clair()
         self.phrase_chiffre()
         
 
-        # Affichage de CLEAR et CIPHER
+        #Affichage du titre
+        self.easter_egg = Label(self.root, text="                                                                                                                                                                                                                     \_(^^)_/ \n ")
+        self.easter_egg.grid(row=0, column=self.nbCylindre+2)
 
-        self.clear_label = Label(self.root, text="\u2190  CLEAR")
-        self.clear_label.grid(row=0,column=self.nbCylindre+1,sticky="nwe")
-        self.cipher_label = Label(self.root, text="\u2190 CHIFFRE")
-        self.cipher_label.grid(row=0,column=self.nbCylindre+1,sticky="we")
+        # Affichage de CLEAR et CHIFFRE
+        self.clear_label = Label(self.root,  text="        CLEAR  \u2192")
+        self.clear_label.grid(row=1,column=0,sticky="new")
+        self.cipher_label = Label(self.root, text="      CHIFFRE  \u2192")
+        self.cipher_label.grid(row=1,column=0,sticky="ew")
     
 
         # Affichage la clé
         self.key_result_label = Label(self.root, text="Clé: " + str(self.cle))
-        self.key_result_label.grid(row=4, column=self.nbCylindre+1, sticky="w")
+        self.key_result_label.grid(row=2, column=self.nbCylindre+1, sticky="ew")
     
         
         # Affichage du nombre de ligne a sauter pour avoir la phrase en clair
-        self.skip_result_label = Label(self.root, text="Nombre de lignes à remonter : 15")
-        self.skip_result_label.grid(row=5, column=self.nbCylindre+1, sticky="w")
+        self.skip_result_label = Label(self.root, text="Nombre de lignes à sauter: 15")
+        self.skip_result_label.grid(row=3, column=self.nbCylindre+1, sticky="ew")
 
         style_Quitter = {
             'bg': '#f44336',     # Background color
@@ -393,21 +420,21 @@ class dechiffrement:
             'width': 10,         # Button width
             'height': 1,         # Button height
                         }
-        # Affichage du bouton pour Menu
+         # Affichage du bouton pour Menu
         self.boutonMenu = Button(self.root, text="Return Menu", command=self.LancerMenu, **style_Quitter)
-        self.boutonMenu.grid(row=6, column=self.nbCylindre+1,padx=10, sticky="w")
+        self.boutonMenu.grid(row=7, column=0, sticky="w")
         style_Afficher = {
             'bg': 'green',     # Background color
             'fg': 'white',       # Text color
             'font': ('Arial', 12, 'bold'),  # Font style
             'relief': 'raised',  # Button border style
             'borderwidth': 2,    # Border width
-            'width': 10,         # Button width
+            'width': 15,         # Button width
             'height': 1,         # Button height
                         }
         # Boutton pour voir texte clair et chiffré dans une nouvelle fenêtre
-        self.boutonAfficher = Button(self.root, text="Afficher", command=self.afficher, **style_Afficher)
-        self.boutonAfficher.grid(row=6, column=self.nbCylindre+1,padx=125, sticky="w")
+        self.boutonAfficher = Button(self.root, text="Afficher le cryptage", command=self.afficher, **style_Afficher)
+        self.boutonAfficher.grid(row=7, column=self.nbCylindre+1, sticky="w")
 
     def LancerMenu(self):
         self.root.destroy()
@@ -419,7 +446,7 @@ class dechiffrement:
         self.phrase_chiffre()
         self.affichage_cylindre()
         self.phrase = Toplevel()
-        self.phrase.title("Affichage")
+        self.phrase.title("Information sur le cryptage")
         self.phrase.geometry("500x500")
         self.phrase.resizable(width=False, height=False)
         self.phrase.config(bg="white")
@@ -427,6 +454,10 @@ class dechiffrement:
         self.phraseClair.pack()
         self.phraseChiffre = Label(self.phrase, text="Texte chiffré: " + self.phraseChiffre, bg="white")
         self.phraseChiffre.pack()
+        self.cle_label = Label(self.phrase, text="Clé: " + str(self.cle), bg="white")
+        self.cle_label.pack()
+        self.cylindre = Label(self.phrase, text="Nom du fichier des cylindres : Cylindres.txt", bg="white")
+        self.cylindre.pack()
 
 
     
