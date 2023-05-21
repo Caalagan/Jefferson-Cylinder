@@ -161,15 +161,6 @@ class chiffrement:
         self.cipher_label = Label(self.root, text="\u2190 CHIFFRE")
         self.cipher_label.grid(row=0,column=self.nbCylindre+1,sticky="we")
     
-        
-
-        # Affichage de la phrase en clair
-        self.clear_result_label = Label(self.root, text="Texte clair: " + self.phraseClair)
-        self.clear_result_label.grid(row=2, column=self.nbCylindre+1, sticky="w")
-
-        # Affichage du résultat chiffré
-        self.cipher_result_label = Label(self.root, text="Texte chiffré: " + self.phraseChiffre)
-        self.cipher_result_label.grid(row=3, column=self.nbCylindre+1, sticky="w")
 
         # Affichage la clé
         self.key_result_label = Label(self.root, text="Clé: " + str(self.cle))
@@ -190,13 +181,42 @@ class chiffrement:
             'height': 1,         # Button height
                         }
          # Affichage du bouton pour Menu
-        self.boutonMenu = Button(self.root, text="Menu", command=self.LancerMenu, **style_Quitter)
+        self.boutonMenu = Button(self.root, text="Return Menu", command=self.LancerMenu, **style_Quitter)
         self.boutonMenu.grid(row=6, column=self.nbCylindre+1, sticky="w")
+        style_Afficher = {
+            'bg': 'green',     # Background color
+            'fg': 'white',       # Text color
+            'font': ('Arial', 12, 'bold'),  # Font style
+            'relief': 'raised',  # Button border style
+            'borderwidth': 2,    # Border width
+            'width': 10,         # Button width
+            'height': 1,         # Button height
+                        }
+        # Boutton pour voir texte clair et chiffré dans une nouvelle fenêtre
+        self.boutonAfficher = Button(self.root, text="Afficher", command=self.afficher, **style_Afficher)
+        self.boutonAfficher.grid(row=7, column=self.nbCylindre+1, sticky="w")
 
     def LancerMenu(self):
         self.root.destroy()
         BackMenu = Menu()
         BackMenu.root.mainloop()
+
+    def afficher(self):
+        self.phrase_clair()
+        self.phrase_chiffre()
+        self.affichage_cylindre()
+        self.phrase = Toplevel()
+        self.phrase.title("Affichage")
+        self.phrase.geometry("500x500")
+        self.phrase.resizable(width=False, height=False)
+        self.phrase.config(bg="white")
+        self.phraseClair = Label(self.phrase, text="Texte clair: " + self.phraseClair, bg="white")
+        self.phraseClair.pack()
+        self.phraseChiffre = Label(self.phrase, text="Texte chiffré: " + self.phraseChiffre, bg="white")
+        self.phraseChiffre.pack()
+        
+
+      
 
     
     def modification_cylindre(self):
@@ -354,15 +374,6 @@ class dechiffrement:
         self.cipher_label = Label(self.root, text="\u2190 CHIFFRE")
         self.cipher_label.grid(row=0,column=self.nbCylindre+1,sticky="we")
     
-        
-
-        # Affichage de la phrase en clair
-        self.clear_result_label = Label(self.root, text="Texte clair: " + self.phraseClair)
-        self.clear_result_label.grid(row=2, column=self.nbCylindre+1, sticky="w")
-
-        # Affichage du résultat chiffré
-        self.cipher_result_label = Label(self.root, text="Texte chiffré: " + self.phraseChiffre)
-        self.cipher_result_label.grid(row=3, column=self.nbCylindre+1, sticky="w")
 
         # Affichage la clé
         self.key_result_label = Label(self.root, text="Clé: " + str(self.cle))
@@ -383,16 +394,42 @@ class dechiffrement:
             'height': 1,         # Button height
                         }
         # Affichage du bouton pour Menu
-        self.boutonMenu = Button(self.root, text="Menu", command=self.LancerMenu, **style_Quitter)
+        self.boutonMenu = Button(self.root, text="Return Menu", command=self.LancerMenu, **style_Quitter)
         self.boutonMenu.grid(row=6, column=self.nbCylindre+1, sticky="w")
+        style_Afficher = {
+            'bg': 'green',     # Background color
+            'fg': 'white',       # Text color
+            'font': ('Arial', 12, 'bold'),  # Font style
+            'relief': 'raised',  # Button border style
+            'borderwidth': 2,    # Border width
+            'width': 10,         # Button width
+            'height': 1,         # Button height
+                        }
+        # Boutton pour voir texte clair et chiffré dans une nouvelle fenêtre
+        self.boutonAfficher = Button(self.root, text="Afficher", command=self.afficher, **style_Afficher)
+        self.boutonAfficher.grid(row=7, column=self.nbCylindre+1, sticky="w")
 
     def LancerMenu(self):
         self.root.destroy()
         BackMenu = Menu()
         BackMenu.root.mainloop()
 
-      
+    def afficher(self):
+        self.phrase_clair()
+        self.phrase_chiffre()
+        self.affichage_cylindre()
+        self.phrase = Toplevel()
+        self.phrase.title("Affichage")
+        self.phrase.geometry("500x500")
+        self.phrase.resizable(width=False, height=False)
+        self.phrase.config(bg="white")
+        self.phraseClair = Label(self.phrase, text="Texte clair: " + self.phraseClair, bg="white")
+        self.phraseClair.pack()
+        self.phraseChiffre = Label(self.phrase, text="Texte chiffré: " + self.phraseChiffre, bg="white")
+        self.phraseChiffre.pack()
 
+
+    
     
     def modification_cylindre(self):
         #on modifie le fichier cylindre.txt pour qu'il corresponde à la rotation en cours
