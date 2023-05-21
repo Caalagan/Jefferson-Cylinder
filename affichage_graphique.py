@@ -157,9 +157,9 @@ class chiffrement:
         # Affichage de CLEAR et CIPHER
 
         self.clear_label = Label(self.root, text="\u2190  CLEAR")
-        self.clear_label.grid(row=0,column=self.nbCylindre+1,sticky="nwe")
+        self.clear_label.grid(row=0,column=self.nbCylindre+1,sticky="new")
         self.cipher_label = Label(self.root, text="\u2190 CHIFFRE")
-        self.cipher_label.grid(row=0,column=self.nbCylindre+1,sticky="we")
+        self.cipher_label.grid(row=0,column=self.nbCylindre+1,sticky="ew")
     
 
         # Affichage la clé
@@ -182,7 +182,7 @@ class chiffrement:
                         }
          # Affichage du bouton pour Menu
         self.boutonMenu = Button(self.root, text="Return Menu", command=self.LancerMenu, **style_Quitter)
-        self.boutonMenu.grid(row=6, column=self.nbCylindre+1, sticky="w")
+        self.boutonMenu.grid(row=6, column=self.nbCylindre+1,padx=10, sticky="w")
         style_Afficher = {
             'bg': 'green',     # Background color
             'fg': 'white',       # Text color
@@ -194,7 +194,7 @@ class chiffrement:
                         }
         # Boutton pour voir texte clair et chiffré dans une nouvelle fenêtre
         self.boutonAfficher = Button(self.root, text="Afficher", command=self.afficher, **style_Afficher)
-        self.boutonAfficher.grid(row=7, column=self.nbCylindre+1, sticky="w")
+        self.boutonAfficher.grid(row=6, column=self.nbCylindre+1,padx=125, sticky="w")
 
     def LancerMenu(self):
         self.root.destroy()
@@ -395,7 +395,7 @@ class dechiffrement:
                         }
         # Affichage du bouton pour Menu
         self.boutonMenu = Button(self.root, text="Return Menu", command=self.LancerMenu, **style_Quitter)
-        self.boutonMenu.grid(row=6, column=self.nbCylindre+1, sticky="w")
+        self.boutonMenu.grid(row=6, column=self.nbCylindre+1,padx=10, sticky="w")
         style_Afficher = {
             'bg': 'green',     # Background color
             'fg': 'white',       # Text color
@@ -407,7 +407,7 @@ class dechiffrement:
                         }
         # Boutton pour voir texte clair et chiffré dans une nouvelle fenêtre
         self.boutonAfficher = Button(self.root, text="Afficher", command=self.afficher, **style_Afficher)
-        self.boutonAfficher.grid(row=7, column=self.nbCylindre+1, sticky="w")
+        self.boutonAfficher.grid(row=6, column=self.nbCylindre+1,padx=125, sticky="w")
 
     def LancerMenu(self):
         self.root.destroy()
