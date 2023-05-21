@@ -4,7 +4,7 @@ class chiffrement:
     def __init__(self, nombre_de_cylindre, phrase):
         self.n = nombre_de_cylindre
         self.phrase = phrase
-        self.phrase_chiffré = ""
+        self.phrase_chiffré = "test" 
         self.cle = []
 
         #Ecriture dans un fichier txt de n ligne (pas besoin de clear ça le fait tout seul)
@@ -107,9 +107,9 @@ class chiffrement:
         self.affichage_cylindre()
         # Affichage de CLEAR et CIPHER
         self.clear_label = Label(self.root, text="CLEAR")
-        self.clear_label.grid(row=0,  column=n+1,padx = 1, pady=5)
+        self.clear_label.grid(row=0,column=n+1,sticky="nwe")
         self.cipher_label = Label(self.root, text="CIPHER ")
-        self.cipher_label.grid(row=0, column=n+1, sticky="s",  padx= 1, pady=5)
+        self.cipher_label.grid(row=0,column=n+1,sticky="we")
     
 
         # Affichage du résultat chiffré
@@ -128,10 +128,12 @@ class chiffrement:
         self.key_result_label = Label(self.root, text="Clé: " + str(self.cle))
         self.key_result_label.grid(row=5, column=self.n+1, sticky="w")
     
+        
+        # Affichage du nombre de ligne a sauter pour avoir la phrase en clair
+        lines_to_skip = self.phrase_chiffré.count("\n") 
+        self.skip_result_label = Label(self.root, text="Nombre de lignes à sauter: " + str(lines_to_skip))
+        self.skip_result_label.grid(row=6, column=self.n+1, sticky="w")
 
-        # Affichage du nombre de ligne a sauter
-        self.lines_result_label = Label(self.root, text="Lignes à sauter: " + str(self.phrase_chiffré.count("\n")))
-        self.lines_result_label.grid(row=6, column=self.n+1, sticky="w")
 
 
 
