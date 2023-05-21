@@ -56,7 +56,7 @@ class chiffrement:
 
 
     def affichage_cylindre(self):
-        #Creation d`un label a chaque colonn
+        #Creation d`un label pour afficher chaque cylindre sur une colonne
         for i in range(self.n):
             ligne=""
             VarCylindre = "label"+str(i)
@@ -75,7 +75,7 @@ class chiffrement:
             self.AffichageCle.grid(row=2, column=0, columnspan=100)
   
 
-        #ajouter deux fleches pour chaque cylindre 
+    #ajouter deux fleches pour chaque cylindre 
     def creer_fleches(self):
         for i in range (self.n):
             VarFlecheHaut = Button(self.root, text="^\n|", relief = FLAT, command=lambda i=i: self.fleche_haut(i))
@@ -185,7 +185,6 @@ class chiffrement:
         with open ("cylindre.txt", "w+") as fichier:
             for i in self.cle:
                 fichier.write(self.dico[i])
-        #recupération du nouveau dico
 
     def _get_dico_(self):
         #Lecture du fichier : création d'un dictionnaire avec en clé le numéro de la ligne et en valeur la chaine de caractère
